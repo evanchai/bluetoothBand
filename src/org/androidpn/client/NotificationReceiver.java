@@ -18,9 +18,9 @@ package org.androidpn.client;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import com.example.ble_boombandui.dao.AndroidpnMsgDao;
+import com.example.ble_boombandui.model.AndroidpnMsg;
 import com.example.ble_boombandui.msgbox.MsgBox;
-import com.pwp.dao.AndroidpnMsgDao;
-import com.pwp.vo.AndroidpnMsg;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

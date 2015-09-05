@@ -15,6 +15,11 @@
  */
 package org.androidpn.client;
 
+import java.util.List;
+
+import com.example.ble_boombandui.dao.WaveDao;
+import com.example.ble_boombandui.model.WaveData;
+
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -58,14 +63,21 @@ public class ConnectivityReceiver extends BroadcastReceiver {
 				notificationService.connect();
 				Toast.makeText(context,
 						networkInfo.getTypeName() + " connected",
-						Toast.LENGTH_LONG).show();
+						Toast.LENGTH_SHORT).show();
+				WaveDao dao = new WaveDao(context);
+				List<WaveData> waveList = dao.read();
+				if (waveList != null) {
+					Toast.makeText(context, waveList.toString() + " uploaded",
+							Toast.LENGTH_LONG).show();
+					// TODO:upload to server
+				}
+
 			}
 		} else {
 			Log.e(LOGTAG, "Network unavailable");
 			notificationService.disconnect();
-			Toast.makeText(context,"Network unavailable",
-					Toast.LENGTH_LONG).show();
+			Toast.makeText(context, "Network unavailable", Toast.LENGTH_LONG)
+					.show();
 		}
 	}
-
 }

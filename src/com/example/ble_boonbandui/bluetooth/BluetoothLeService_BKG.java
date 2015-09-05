@@ -16,21 +16,29 @@ import android.bluetooth.BluetoothGattDescriptor;
 import android.bluetooth.BluetoothManager;
 import android.bluetooth.BluetoothProfile;
 import android.bluetooth.BluetoothGattService;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.util.Log;
 import android.widget.Toast;
 import com.example.ble_boombandui.R;
+import com.example.ble_boombandui.dao.WaveReaderContract.WaveEntry;
+import com.example.ble_boombandui.dao.WaveDao;
+import com.example.ble_boombandui.dao.WaveReaderDbHelper;
+import com.example.ble_boombandui.model.WaveData;
 
 //ble后台服务
 public class BluetoothLeService_BKG extends Service {
 
 	private BluetoothAdapter mBluetoothAdapter;
 	private boolean mScanning;
+	private boolean mBluetoothOpened = false;
 	private ArrayList<BluetoothDevice> mLeDeviceList = new ArrayList<BluetoothDevice>();
 	private final static String TAG = BluetoothLeService_BKG.class
 			.getSimpleName();
@@ -62,9 +70,10 @@ public class BluetoothLeService_BKG extends Service {
 	UUID.fromString(SampleGattAttributes.AMOMCU);
 	public final static UUID UUID_WRITE = // 写口
 	UUID.fromString(SampleGattAttributes.AMOMCU);
-	public final static String DEVICENAME="ModiaTek BLE SBP";
+	public final static String DEVICENAME = "ModiaTek BLE SBP";
+
 	// public final static String DEVICENAME="AmoMcu.com";
-	//public final static String DEVICENAME = "hello world";
+	// public final static String DEVICENAME = "hello world";
 
 	@Override
 	public void onCreate() {
@@ -109,6 +118,11 @@ public class BluetoothLeService_BKG extends Service {
 			}
 		}
 
+		// new Thread(new Runnable() {
+		// @Override
+		// public void run() {
+
+		// while (true){
 		if (!mBluetoothAdapter.isEnabled()) {
 			mBluetoothOpened = false;
 
@@ -215,7 +229,6 @@ public class BluetoothLeService_BKG extends Service {
 						}
 					}
 
-					
 				}
 			}).start();
 		} else {
@@ -358,9 +371,8 @@ public class BluetoothLeService_BKG extends Service {
 
 	};
 
-	private static StringBuffer buffer = new StringBuffer();
-	private ByteArrayOutputStream bos = new ByteArrayOutputStream(); 
-	private static boolean flag = false; // 是否开始接收
+	private ByteArrayOutputStream bos = new ByteArrayOutputStream();
+	private static boolean readyToReceive = false; // 是否开始接收
 
 	// private static int temp=0;
 	// 显示出读到的数据
@@ -396,24 +408,22 @@ public class BluetoothLeService_BKG extends Service {
 					stringBuilder.append(String.format("%02X ", byteChar));
 				intent.putExtra(EXTRA_DATA, stringBuilder.toString() + "\n");
 				sendBroadcast(intent);
-				//String resultString = Base64.encode(data);
-				
-				String [] resultArray = stringBuilder.toString().split(" ");
+				// String resultString = Base64.encode(data);
+
+				String[] resultArray = stringBuilder.toString().split(" ");
 				// 显示！
 				Message msg = display_handler.obtainMessage();
-				
+
 				System.out.println(resultArray[0]);
-				System.out.println(resultArray[resultArray.length-1]);
+				System.out.println(resultArray[resultArray.length - 1]);
 				System.out.println(resultArray.length);
 
-				if (!flag) {
+				if (!readyToReceive) {
 					if (resultArray[0].equals("42")
 							&& resultArray[resultArray.length - 1].equals("45")
 							&& resultArray.length == 20) {
-						flag = true;
+						readyToReceive = true;
 						String cmdString = "READY";
-						intent.putExtra(EXTRA_DATA, cmdString + "\n");
-						sendBroadcast(intent);
 						write(cmdString);
 						msg.obj = "开始接收..."; // 包头正确，开始接收
 						display_handler.sendMessage(msg);
@@ -423,9 +433,7 @@ public class BluetoothLeService_BKG extends Service {
 						sendBroadcast(intent);
 						write(cmdString);
 					}
-				}
-
-				else {
+				} else {
 					try {
 						bos.write(data);
 
@@ -435,16 +443,22 @@ public class BluetoothLeService_BKG extends Service {
 							write(cmdString);
 							intent.putExtra(EXTRA_DATA, cmdString + "\n");
 							sendBroadcast(intent);
-
 							// 显示
 							String tempString = bos.toString() + "\n收到"
 									+ bos.size() + "k字节。 回复当前时间:" + cmdString;
 							msg.obj = "接受成功!";
 							System.out.println(tempString);
 							display_handler.sendMessage(msg);
+							readyToReceive = false;
 
-							bos.flush();
-							flag = false;
+							// save to database
+							new Thread(new Runnable() {
+								@Override
+								public void run() {
+									WaveDao dao = new WaveDao(getApplicationContext());
+									dao.save(new WaveData(1, 2, "3"));
+								}
+							}).start();
 						}
 						System.out.println(bos.size());
 

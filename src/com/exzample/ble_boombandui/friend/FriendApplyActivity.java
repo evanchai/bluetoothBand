@@ -12,8 +12,8 @@ import url.SendURL;
 
 import com.example.ble_boombandui.FirstPageActivity;
 import com.example.ble_boombandui.R;
-import com.pwp.dao.AndroidpnMsgDao;
-import com.pwp.vo.AndroidpnMsg;
+import com.example.ble_boombandui.dao.AndroidpnMsgDao;
+import com.example.ble_boombandui.model.AndroidpnMsg;
 
 import android.app.Activity;
 import android.app.LauncherActivity.ListItem;

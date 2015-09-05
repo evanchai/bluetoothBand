@@ -18,7 +18,7 @@ package org.androidpn.client;
 import org.jivesoftware.smack.packet.IQ;
 import org.jivesoftware.smack.packet.IQ.Type;
 
-import com.pwp.dao.AndroidpnMsgDao;
+import com.example.ble_boombandui.dao.AndroidpnMsgDao;
 
 import android.app.Activity;
 import android.content.Context;

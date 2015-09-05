@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TabHost
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@android:id/tabhost"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:layout_weight="1">
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		>
+		
+		<FrameLayout
+			android:id="@android:id/tabcontent"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:layout_alignParentTop="true"  >
+			<!-- 瀹氫箟绗竴涓爣绛鹃〉鐨勫唴瀹?-->
+			<LinearLayout
+				android:id="@+id/tab01"
+				android:orientation="vertical"
+				android:layout_width="fill_parent"
+				android:layout_height="fill_parent">
+				
+			</LinearLayout>
+			<!-- 瀹氫箟绗簩涓爣绛鹃〉鐨勫唴瀹?-->
+			<LinearLayout
+				android:id="@+id/tab02"
+				android:orientation="vertical"
+				android:layout_width="fill_parent"
+				android:layout_height="fill_parent">
+				
+			</LinearLayout>
+			<!-- 瀹氫箟绗笁涓爣绛鹃〉鐨勫唴瀹?-->
+			<LinearLayout
+				android:id="@+id/tab03"
+				android:orientation="vertical"
+				android:layout_width="fill_parent"
+				android:layout_height="fill_parent"
+				android:textSize="11pt">
+				
+			</LinearLayout>
+				<!-- 瀹氫箟绗笁涓爣绛鹃〉鐨勫唴瀹?-->
+			<LinearLayout
+				android:id="@+id/tab04"
+				android:orientation="vertical"
+				android:layout_width="fill_parent"
+				android:layout_height="fill_parent"
+				android:textSize="11pt">
+				
+			</LinearLayout>
+		</FrameLayout>
+		<TabWidget
+		     android:layout_alignParentBottom="true" 
+			android:id="@android:id/tabs"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"/>
+	</RelativeLayout>
+</TabHost>

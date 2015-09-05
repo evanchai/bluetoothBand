@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+    	
+    <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="48dip"
+            android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/btn_searchfriend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="查找账号" />
+
+            <EditText
+                android:id="@+id/et_searchusername"
+                android:layout_width="fill_parent"
+                android:layout_height="40dp"
+                android:background="#00ffffff"
+                android:hint="请输入对方账号"
+                android:paddingLeft="10dp" />
+        </LinearLayout>
+         <Button
+            android:id="@+id/btn_newfriend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="新朋友" 
+            android:visibility="gone"/>
+    
+	<FrameLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" >
+
+            <ListView
+                android:id="@+id/list_friend"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:cacheColorHint="#00000000"
+                android:divider="@null"
+                android:listSelector="#00000000" >
+            </ListView>
+           
+        </FrameLayout>
+</LinearLayout>

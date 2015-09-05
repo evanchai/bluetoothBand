@@ -1,0 +1,108 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.ble_boombandui.FirstPageActivity"
+    android:orientation="vertical"  
+   >
+	<ImageButton
+	     android:layout_marginTop="30dp"
+     	android:id="@+id/imgbtn_touxiang"
+     	android:layout_width="80dp"
+     	android:layout_height="80dp"
+     	android:src="@drawable/touxiang" 
+     	android:layout_gravity="center"
+     	android:scaleType="fitCenter"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="游客登录" 
+        android:textSize="15sp"/>
+
+     <LinearLayout
+         android:layout_marginTop="30dp"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:orientation="vertical" 
+        >
+
+     	<LinearLayout 
+     	    android:layout_width="fill_parent"
+     	    android:layout_height="100dp"
+     	    android:orientation="horizontal"
+     	     >
+
+     	     <Button
+     	         android:id="@+id/imgbtn_test"
+     	         android:layout_width="fill_parent"
+     	         android:layout_height="fill_parent"
+     	         android:src="@drawable/checkcenter" 
+     	         android:layout_weight="1"
+     	         android:scaleType="fitCenter"
+     	         android:text="健康信息"/>
+     	     
+     	     <Button
+     	         android:layout_marginLeft="10dp"
+     	         android:id="@+id/imgbtn_history"
+     	         android:layout_width="fill_parent"
+     	         android:layout_height="fill_parent"
+     	         android:src="@drawable/health" 
+     	         android:layout_weight="1"
+     	         android:scaleType="fitCenter"
+     	         android:text="功能设置"/>    	    
+     	</LinearLayout>
+        
+     	<LinearLayout 
+     	    android:layout_width="fill_parent"
+     	    android:layout_height="100dp"
+     	    android:layout_marginTop="5dp"
+     	    android:orientation="horizontal"
+     	    >
+     	  
+     	     <Button
+     	      android:id="@+id/imgbtn_plan"
+     	      android:layout_width="fill_parent"
+     	      android:layout_height="fill_parent"
+     	      android:src="@drawable/ic_launcher" 
+     	      android:layout_weight="1"
+     	      android:text="分享互动"/>
+     	    	
+			 <Button
+			   android:layout_marginLeft="10dp"
+     	       android:id="@+id/imgbtn_friend"
+     	       android:layout_width="fill_parent"
+     	       android:layout_height="fill_parent"
+     	       android:src="@drawable/ic_launcher" 
+     	       android:layout_weight="1"
+     	       android:text="我的腕带"/>    	    	
+     	</LinearLayout>
+     	
+    </LinearLayout>
+
+     <Button
+         android:id="@+id/btn_settings"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:text="设置" 
+         android:visibility="gone"/>
+
+     <Button
+         android:id="@+id/btn_msg"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:text="消息盒子" 
+         android:visibility="gone"/>
+
+     <Button
+         android:id="@+id/btn_linechart"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:text="健康趋势" 
+         android:visibility="gone"/>
+
+</LinearLayout>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal" >
+    <TextView  android:id="@+id/Diastolic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="舒张压"
+        android:textSize="20dp"
+        android:paddingLeft="10dp"/>
+       <TextView  android:id="@+id/Systolic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:text="收缩压"
+        android:paddingLeft="40dp"/>
+        <TextView  android:id="@+id/heartrate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:text="心率"
+        android:paddingLeft="50dp"/>
+        <TextView  android:id="@+id/dailyrecord_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="日期"
+        android:textSize="20dp"
+        android:paddingLeft="40dp"
+        android:gravity="right"
+        />
+
+</LinearLayout>
